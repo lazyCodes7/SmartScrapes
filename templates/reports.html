@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Smart Scrapes </title>
+    <!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="description" content="CodedThemes">
+    <meta name="keywords" content="flat ui, admin  Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
+    <meta name="author" content="CodedThemes">
+    <!-- Favicon icon -->
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap/css/bootstrap.min.css') }}">
+    <!-- themify-icons line icon -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='icon/themify-icons/themify-icons.css') }}">
+    <!-- ico font -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='icon/icofont/css/icofont.css') }}">
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jquery.mCustomScrollbar.css') }}">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <!-- Pre-loader start -->
+    <div class="theme-loader">
+        <div class="ball-scale">
+            <div class='contain'>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+            </div>
+        </div>
+    </div>
+    <!-- Pre-loader end -->
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+
+            <nav class="navbar header-navbar pcoded-header">
+                <div class="navbar-wrapper">
+
+                    <div class="navbar-logo">
+                        <a class="mobile-menu" id="mobile-collapse" href="#!">
+                            <i class="ti-menu"></i>
+                        </a>
+                        <a class="mobile-search morphsearch-search" href="#">
+                            <i class="ti-search"></i>
+                        </a>
+                        <a href="/">
+                            <img class="img-fluid" src="{{ url_for('static', filename='images/ss.png') }}" alt="Theme-Logo" />
+                        </a>
+                        <a class="mobile-options">
+                            <i class="ti-more"></i>
+                        </a>
+                    </div>
+
+                    <div class="navbar-container container-fluid">
+                        <ul class="nav-left">
+                            <li>
+                                <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
+                            </li>
+
+                            <li>
+                                <a href="#!" onclick="javascript:toggleFullScreen()">
+                                    <i class="ti-fullscreen"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav-right">
+                            <li class="user-profile header-notification">
+                                <a href="#!">
+                                    <img src="{{context.image_url}}" class="img-radius" alt="User-Profile-Image">
+                                    <span>{{context.screen_name}}</span>
+                                    <i class="ti-angle-down"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    <nav class="pcoded-navbar">
+                        <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+                        <div class="pcoded-inner-navbar main-menu">
+                            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Home</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="">
+                                    <a href="/{{context.user}}/dashboard">
+                                        <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            </ul>
+
+
+                            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Analytics</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li>
+                                    <a href="/{{context.user}}/analyze/twitter">
+                                        <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">Tweet Analytics</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url_for('playstoreAnalysis',username=context.user) }}">
+                                        <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">Playstore Analytics</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url_for('appStoreAnalysis',username=context.user) }}">
+                                        <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">AppStore Analytics</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                                        <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">User Experience</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class=" ">
+                                            <a href="{{url_for('userBaseAnalysis',username=context.user)}}">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">User-Base Analytics</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="active">
+                                            <a href="{{url_for('textAnalyze', username=context.user)}}">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Reports</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                
+                            </ul>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li>
+                                    <a href="{{ url_for('customDataAnalysis',username=context.user) }}" onclick="loading()">
+                                        <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">Upload Data</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            
+                    </nav>
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <!-- Page-header start -->
+                                    <div class="page-header card">
+                                        <div class="row align-items-end">
+                                            <div class="col-lg-8">
+                                                <div class="page-header-title">
+                                                    <i class="icofont icofont icofont icofont-file-document bg-c-pink"></i>
+                                                    <div class="d-inline">
+                                                        <h4>{{twitter_username}}</h4>
+                                                        <span>Get a textual report of your tweets.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="page-header-breadcrumb">
+                                                    <ul class="breadcrumb-title">
+                                                        <li class="breadcrumb-item">
+                                                            <a href="index.html">
+                                                                <i class="icofont icofont-home"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li class="breadcrumb-item"><a href="#!">Pages</a>
+                                                        </li>
+                                                        <li class="breadcrumb-item"><a href="#!">Reports</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Page-header end -->
+
+                                    <div class="page-body">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5>Reports</h5>
+                                                        <span>If you are more of a reading person!</span>
+                                                        <div class="card-header-right">
+                                                            <ul class="list-unstyled card-option" style="width: 35px;">
+                                                                <li class=""><i class="icofont icofont-simple-left"></i></li>
+                                                                <li><i class="icofont icofont-maximize full-card"></i></li>
+                                                                <li><i class="icofont icofont-minus minimize-card"></i></li>
+                                                                <li><i class="icofont icofont-refresh reload-card"></i></li>
+                                                                <li><i class="icofont icofont-error close-card"></i></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <p>
+                                                            "This is the section where you get the reports for your brand. If you are more into reading things then these section might help you. However the graphs are a preferred way as it is way more detailed than this."
+                                                        </p>
+                                                    </div>
+
+                                                </div>
+                                                <div class="page-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                    <!-- Basic Form Inputs card start -->
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <h5>Know yourself</h5>
+                                                            <span>Some basic info about you taken from your twitter account.</span>
+                                                            <div class="card-header-right"><i
+                                                                class="icofont icofont-spinner-alt-5"></i></div>
+
+                                                                <div class="card-header-right">
+                                                                    <i class="icofont icofont-spinner-alt-5"></i>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="card-block">
+                                                                <h4 class="sub-title">Profile details</h4>
+                                                                <form>
+                                                                    <div class="form-group row">
+                                                                        <label class="col-sm-2 col-form-label">Account</label>
+                                                                        <div class="col-sm-10">
+                                                                            <input type="text" class="form-control-sm form-bg-inverse"
+                                                                            placeholder={{context.screen_name}} readonly>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label class="col-sm-2 col-form-label">Followers</label>
+                                                                        <div class="col-sm-10">
+                                                                            <input type="text" class="form-control-sm form-bg-inverse"
+                                                                            placeholder={{context.followers}} readonly>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label class="col-sm-2 col-form-label">Favorites</label>
+                                                                        <div class="col-sm-10">
+                                                                            <input type="text" class="form-control-sm form-bg-inverse"
+                                                                            placeholder={{context.total_fav}} readonly>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label class="col-sm-2 col-form-label">Retweets</label>
+                                                                        <div class="col-sm-10">
+                                                                            <input type="text" class="form-control-sm form-bg-inverse"
+                                                                            placeholder={{context.retweets}} readonly>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label class="col-sm-2 col-form-label">Friends</label>
+                                                                            <div class="col-sm-10">
+                                                                                <input type="text" class="form-control-sm form-bg-inverse"
+                                                                            placeholder={{context.friends}} readonly>
+                                                                            </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <!-- Material tab card start -->
+                                                        <div class="card">
+                                                            <div class="card-header">
+                                                                <h5>Top Keywords</h5>
+                                                                <span>Know what are the top keywords from your data!</span>
+                                                                <div class="card-header-right"><ul class="list-unstyled card-option">        
+                                                                    <li><i class="icofont icofont-simple-left "></i></li>       
+                                                                     <li><i class="icofont icofont-maximize full-card"></i></li>        
+                                                                     <li><i class="icofont icofont-minus minimize-card"></i></li>        
+                                                                     <li><i class="icofont icofont-refresh reload-card"></i></li>        
+                                                                     <li><i class="icofont icofont-error close-card"></i></li>    
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-block">
+                                                                <!-- Row start -->
+                                                                <div class="row m-b-30">
+                                                                    <div class="col-lg-12 col-xl-6">
+                                                                        <div class="sub-title">Viz!</div>
+                                                                        <!-- Nav tabs -->
+                                                                        <ul class="nav nav-tabs md-tabs" role="tablist">
+                                                                            <li class="nav-item">
+                                                                                <a class="nav-link active" data-toggle="tab" href="#twitter" role="tab">Twitter</a>
+                                                                                <div class="slide"></div>
+                                                                            </li>
+                                                                            <li class="nav-item">
+                                                                                <a class="nav-link" data-toggle="tab" href="#appstore" role="tab">AppStore</a>
+                                                                                <div class="slide"></div>
+                                                                            </li>
+                                                                            <li class="nav-item">
+                                                                                <a class="nav-link" data-toggle="tab" href="#playstore" role="tab">PlayStore</a>
+                                                                                <div class="slide"></div>
+                                                                            </li>
+                                                                        </ul>
+                                                                        <!-- Tab panes -->
+                                                                        <div class="tab-content card-block">
+                                                                            <div class="tab-pane active" id="twitter" role="tabpanel">
+                                                                            </div>
+                                                                            <div class="tab-pane" id="appstore" role="tabpanel">
+                                                                            </div>
+                                                                            <div class="tab-pane" id="playstore" role="tabpanel">
+                                                                            </div>
+                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-12 col-xl-6">
+                                                                        <div class="sub-title">Analysis</div>
+                                                                        <!-- Tab panes -->
+                                                                        <div class="tab-content card-block">
+                                                                            <div class="tab-pane active" id="twitter0" role="tabpanel">
+                                                                                <p class="m-0">Using our NLP tools we were able to find the most used and the least used keyword. They are down below</p>
+                                                                                {% for i in range (0,2) %}
+                                                                                <div class = "label-main">
+                                                                                    <h5><button class = "btn btn-danger">{{context.twitter_keyword_insights[i]}}</button></h5>
+                                                                                </div>
+                                                                                {% endfor %}
+                                                                                
+                                                                            </div>
+                                                                            <div class="tab-pane" id="appstore0" role="tabpanel">
+                                                                                <p class="m-0">Using our NLP tools we were able to find the most used and the least used keyword. They are down below</p>
+                                                                                {% for i in range (0,2) %}
+                                                                                <div class = "label-main">
+                                                                                    <h5><button class = "btn btn-info">{{context.appstore_keyword_insights[i]}}</button></h5>
+                                                                                </div>
+                                                                                {% endfor %}
+                                                                            </div>
+                                                                            <div class="tab-pane" id="playstore0" role="tabpanel">
+                                                                                <p class="m-0">Using our NLP tools we were able to find the most used and the least used keyword. They are down below</p>
+                                                                                {% for i in range (0,2) %}
+                                                                                <div class = "label-main">
+                                                                                    <h5><button class = "btn btn-inverse">{{context.playstore_keyword_insights[i]}}</button></h5>
+                                                                                </div>
+                                                                                {% endfor %}
+                                                                                
+                                                                            </div>
+                                                                           
+                                                                        </div>
+                                                                        <!-- Nav tabs -->
+                                                                        <ul class="nav nav-tabs md-tabs" role="tablist">
+                                                                            <li class="nav-item">
+                                                                                <a class="nav-link active" data-toggle="tab" href="#twitter0" role="tab">Twitter</a>
+                                                                                <div class="slide"></div>
+                                                                            </li>
+                                                                            <li class="nav-item">
+                                                                                <a class="nav-link" data-toggle="tab" href="#appstore0" role="tab">AppStore</a>
+                                                                                <div class="slide"></div>
+                                                                            </li>
+                                                                            <li class="nav-item">
+                                                                                <a class="nav-link" data-toggle="tab" href="#playstore0" role="tab">PlayStore</a>
+                                                                                <div class="slide"></div>
+                                                                            </li>
+                                                                            
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <!-- Material tab card end -->
+                                                <!-- Basic Form Inputs card end -->
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <!-- Bootstrap tab card start -->
+                                                        <div class="card">
+                                                            <div class="card-header">
+                                                                <h5>Reviews</h5>
+                                                                <span>Have a look at your reviews sorted in a different way!</span>
+                                                                <div class="card-header-right">    
+                                                                    <ul class="list-unstyled card-option">        
+                                                                        <li><i class="icofont icofont-simple-left "></i></li>        
+                                                                        <li><i class="icofont icofont-maximize full-card"></i></li>        
+                                                                        <li><i class="icofont icofont-minus minimize-card"></i></li>        
+                                                                        <li><i class="icofont icofont-refresh reload-card"></i></li>        
+                                                                        <li><i class="icofont icofont-error close-card"></i></li>    
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-block">
+                                                                <!-- Row start -->
+                                                                <div class="row">
+                                                                    <div class="col-lg-12 col-xl-6">
+                                                                        <div class="sub-title">Positive</div>
+                                                                        <!-- Nav tabs -->
+                                                                        <ul class="nav nav-tabs  tabs" role="tablist">
+                                                                            <li class="nav-item">
+                                                                                <a class="nav-link active" data-toggle="tab" href="#twitter1" role="tab">Twitter</a>
+                                                                            </li>
+                                                                            <li class="nav-item">
+                                                                                <a class="nav-link" data-toggle="tab" href="#appstore1" role="tab">AppStore</a>
+                                                                            </li>
+                                                                            <li class="nav-item">
+                                                                                <a class="nav-link" data-toggle="tab" href="#playstore1" role="tab">PlayStore</a>
+                                                                            </li>
+                                                                            
+                                                                        </ul>
+                                                                        <!-- Tab panes -->
+                                                                        <div class="tab-content tabs card-block">
+                                                                            <div class="tab-pane active" id="twitter1" role="tabpanel">
+                                                                                <ol>
+                                                                                    {% for i in range(0, twitter_len) %}
+                                                                                    <li><p class="m-0">{{context.twitter_positive_reviews[i]}}</p></li>
+                                                                                    {% endfor %}
+                                                                                </ol>
+                                                                            </div>
+                                                                            <div class="tab-pane" id="appstore1" role="tabpanel">
+                                                                                <ol>
+                                                                                    {% for i in range(0, appstore_len) %}
+                                                                                    <li><p class="m-0">{{context.appstore_positive_reviews[i]}}</p></li>
+                                                                                    {% endfor %}
+                                                                                </ol>
+                                                                            </div>
+                                                                            <div class="tab-pane" id="playstore1" role="tabpanel">
+                                                                                <ol>
+                                                                                    {% for i in range(0, playstore_len) %}
+                                                                                    <li><p class="m-0"></p>{{context.playstore_positive_reviews[i]}}</p></li>
+                                                                                    {% endfor %}
+                                                                                </ol>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-12 col-xl-6">
+                                                                        <div class="sub-title">Negative</div>
+                                                                        <!-- Tab panes -->
+                                                                        <div class="tab-content tabs card-block">
+                                                                            <div class="tab-pane active" id="twitter2" role="tabpanel">
+                                                                                <ol>
+                                                                                    {% for i in range(0, twitter_negative_len) %}
+                                                                                    <li><p class="m-0">{{context.twitter_negative_reviews[i]}}</p></li>
+                                                                                    {% endfor %}
+                                                                                </ol>                                                                            
+                                                                            </div>
+                                                                            <div class="tab-pane" id="appstore2" role="tabpanel">
+                                                                                <ol>
+                                                                                    {% for i in range(0, appstore_negative_len) %}
+                                                                                    <li><p class="m-0">{{context.appstore_negative_reviews[i]}}</p></li>
+                                                                                    {% endfor %}
+                                                                                </ol>
+                                                                            </div>
+                                                                            <div class="tab-pane" id="playstore2" role="tabpanel">
+                                                                                <ol>
+                                                                                    {% for i in range(0, playstore_negative_len) %}
+                                                                                    <li><p class="m-0">{{context.playstore_negative_reviews[i]}}</p></li>
+                                                                                    {% endfor %}
+                                                                                </ol>
+                                                                            </div>
+                                                                    
+                                                                        </div>
+                                                                        <!-- Nav tabs -->
+                                                                        <ul class="nav nav-tabs tab-below tabs" role="tablist">
+                                                                                <li class="nav-item">
+                                                                                    <a class="nav-link active" data-toggle="tab" href="#twitter2" role="tab">Twitter</a>
+                                                                                </li>
+                                                                                <li class="nav-item">
+                                                                                    <a class="nav-link" data-toggle="tab" href="#appstore2" role="tab">App Store</a>
+                                                                                </li>
+                                                                                <li class="nav-item">
+                                                                                    <a class="nav-link" data-toggle="tab" href="#playstore2" role="tab">Play Store</a>
+                                                                                </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- Row end -->
+                                                            </div>
+                                                        </div>
+                                                        <!-- Bootstrap tab card end -->
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <!-- Material tab card start -->
+                                                            <div class="card">
+                                                                <div class="card-header">
+                                                                    <h5>Topic Clouds!</h5>
+                                                                    <span>Have a look at the various topics we found by using our LDA model!</span>
+                                                                    <div class="card-header-right">    <ul class="list-unstyled card-option">        <li><i class="icofont icofont-simple-left "></i></li>        <li><i class="icofont icofont-maximize full-card"></i></li>        <li><i class="icofont icofont-minus minimize-card"></i></li>        <li><i class="icofont icofont-refresh reload-card"></i></li>        <li><i class="icofont icofont-error close-card"></i></li>    </ul></div>
+                                                                </div>
+                                                                <div class="card-block">
+                                                                    <!-- Row start -->
+                                                                    <div class="row m-b-30">
+                                                                        <div class="col-lg-12 col-xl-6">
+                                                                            <div class="sub-title">Topic Cloud</div>
+                                                                            <!-- Nav tabs -->
+                                                                            <ul class="nav nav-tabs md-tabs" role="tablist">
+                                                                                <li class="nav-item">
+                                                                                    <a class="nav-link active" data-toggle="tab" href="#twitter3" role="tab">Twitter</a>
+                                                                                    <div class="slide"></div>
+                                                                                </li>
+                                                                                <li class="nav-item">
+                                                                                    <a class="nav-link" data-toggle="tab" href="#appstore3" role="tab">AppStore</a>
+                                                                                    <div class="slide"></div>
+                                                                                </li>
+                                                                                <li class="nav-item">
+                                                                                    <a class="nav-link" data-toggle="tab" href="#playstore3" role="tab">PlayStore</a>
+                                                                                    <div class="slide"></div>
+                                                                                </li>
+                                                                            </ul>
+                                                                            <!-- Tab panes -->
+                                                                            <div class="tab-content card-block">
+                                                                                <div class="tab-pane active" id="twitter3" role="tabpanel">
+                                                                                </div>
+                                                                                <div class="tab-pane" id="appstore3" role="tabpanel">
+                                                                                </div>
+                                                                                <div class="tab-pane" id="playstore3" role="tabpanel">
+                                                                                </div>
+                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-12 col-xl-6">
+                                                                            <div class="sub-title">Analysis</div>
+                                                                            <!-- Tab panes -->
+                                                                            <div class="tab-content card-block">
+                                                                                <div class="tab-pane active" id="twitter4" role="tabpanel">
+                                                                                    <p class="m-0">Using our LDA model. We were able to find the words related to the most dominant topic. We first assign the topics to each document from your data and then find the one that is most occuring. Down below are the words from most dominant topic</p>
+                                                                                    {% for i in range (0,10) %}
+                                                                                    <div class = "label-main">
+                                                                                        <h6><button class = "btn btn-inverse">{{context.twitter_most_dominant[i]}}</button></h6>
+                                                                                    </div>
+                                                                                    {% endfor %}
+                                                                                    <p class="m-0">On the contrary these are the words from the least dominant topic from your tweets</p>
+                                                                                    {% for i in range (0,10) %}
+                                                                                    <div class = "label-main">
+                                                                                        <h6><button class = "btn btn-success">{{context.twitter_least_dominant[i]}}</button></h6>
+                                                                                    </div>
+                                                                                    {% endfor %}
+                                                                                    
+
+                                                                                </div>
+                                                                                <div class="tab-pane" id="appstore4" role="tabpanel">
+                                                                                    <p class="m-0">Using our LDA model. We were able to find the words related to the most dominant topic. We first assign the topics to each document from your data and then find the one that is most occuring. Down below are the words from most dominant topic</p>
+                                                                                    {% for i in range (0,10) %}
+                                                                                    <div class = "label-main">
+                                                                                        <h6><button class = "btn btn-inverse">{{context.appstore_most_dominant[i]}}</button></h6>
+                                                                                    </div>
+                                                                                    {% endfor %}
+                                                                                    <p class="m-0">On the contrary these are the words from the least dominant topic from your tweets</p>
+                                                                                    {% for i in range (0,10) %}
+                                                                                    <div class = "label-main">
+                                                                                        <h6><button class = "btn btn-success">{{context.appstore_least_dominant[i]}}</label></button></h6>
+                                                                                    </div>
+                                                                                    {% endfor %}
+                                                                                </div>
+                                                                                <div class="tab-pane" id="playstore4" role="tabpanel">
+                                                                                    <p class="m-0">Using our LDA model. We were able to find the words related to the most dominant topic. We first assign the topics to each document from your data and then find the one that is most occuring. Down below are the words from most dominant topic</p>
+                                                                                    {% for i in range (0,10) %}
+                                                                                    <div class = "label-main">
+                                                                                        <h6><button class = "btn btn-inverse">{{context.playstore_most_dominant[i]}}</button></h6>
+                                                                                    </div>
+                                                                                    {% endfor %}
+                                                                                    <p class="m-0">On the contrary these are the words from the least dominant topic from your tweets</p>
+                                                                                    {% for i in range (0,10) %}
+                                                                                    <div class = "label-main">
+                                                                                        <h6><button class = "btn btn-success">{{context.playstore_least_dominant[i]}}</button></h6>
+                                                                                    </div>
+                                                                                    {% endfor %}
+                                                                                </div>
+                                                                               
+                                                                            </div>
+                                                                            <!-- Nav tabs -->
+                                                                            <ul class="nav nav-tabs md-tabs" role="tablist">
+                                                                                <li class="nav-item">
+                                                                                    <a class="nav-link active" data-toggle="tab" href="#twitter4" role="tab">Twitter</a>
+                                                                                    <div class="slide"></div>
+                                                                                </li>
+                                                                                <li class="nav-item">
+                                                                                    <a class="nav-link" data-toggle="tab" href="#appstore4" role="tab">AppStore</a>
+                                                                                    <div class="slide"></div>
+                                                                                </li>
+                                                                                <li class="nav-item">
+                                                                                    <a class="nav-link" data-toggle="tab" href="#playstore4" role="tab">PlayStore</a>
+                                                                                    <div class="slide"></div>
+                                                                                </li>
+                                                                                
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                            <!-- Material tab card end -->
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5>How to improve your twitter handle?</h5>
+                                                        <div class="card-header-right">
+                                                            <ul class="list-unstyled card-option" style="width: 35px;">
+                                                                <li class=""><i class="icofont icofont-simple-left"></i></li>
+                                                                <li><i class="icofont icofont-maximize full-card"></i></li>
+                                                                <li><i class="icofont icofont-minus minimize-card"></i></li>
+                                                                <li><i class="icofont icofont-refresh reload-card"></i></li>
+                                                                <li><i class="icofont icofont-error close-card"></i></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <b><p>1. Twitter handle.</b>
+                                                        Make it as close to your company name as possible. Add it to your website, email signatures, the side of your delivery vehicle, and anyplace else it makes sense to show it off. Make it memorable.</p>                                                       
+                                                        <p><b>2. Twitter bio.</b>                                                       
+                                                        Be sure to use the entire 160 character limit. Be sure your key offering is visible on the first line. Use industry-related hashtags that will help get you into search results. Provide a shortened URL and fill out the location and website links below the bio.</p>                                                        
+                                                        <p><b>3. Logo and cover image.</b>                                                       
+                                                        Do not leave the picture blank. Use an optimized logo to fit the provided space. Add a brand-consistent color to your profile to help it stand out. (More below about being consistent in your social media branding!)</p>                                                       
+                                                        <p><b>4. Promote others.</b>                                                       
+                                                        You'll build rapport by making yourself seen and heard in other people's tweets. Be sincere and honest, and include your own thoughts; don't just cut and paste. Post a link and brief comment and mention the author by name.</p>                                                       
+                                                        <p><b>5. Retweet and reply.</b>                                          
+                                                        Retweet relevant content and reply to relevant tweets to maintain a robust presence. If someone shares positive feedback, retweet it with a "thank you" message. If you find an article, or if someone's started a threat of messages that align with your brand, show them some love. These are all examples of impactful content to retweet. Remember your retweets reflect back on your brand and should align with your purpose and values.</p>                                                    
+                                                        <p><b>6. Be consistent to build trust.</b>                                              
+                                                        This goes for everything from the style of tweets your tweeting to the time and frequency you're tweeting to the actual content you're tweeting. If you consistently tweet interesting and useful information without being particularly self-promoting, you'll build trust for you and your brand.</p>                                                       
+                                                        <p><b>7. Focus on your niche.</b>                                                   
+                                                        Start by tweeting about topics closely related to your products' focus. This leads to you becoming known as an expert voice in your field, and that credibility makes it more likely your followers will start using your product. You've shown that you're willing to provide value upfront.</p>                                                       
+                                                        <p><b>8. Be creative.</b>                                                       
+                                                        Don't just focus on vanilla topics and the usual tweet formats. Do something original, at least sometimes. See your Twitter account for what it was intended to be, a micro-blog. Think carefully about the wording of your tweets.</p>                                                        
+                                                        <p><b>9. Be responsive.</b>                                                        
+                                                        Turn your startup's Twitter account into a customer service support channel. Respond to any criticism as well as questions or comments. Replying quickly will boost your image as a brand that cares about customers and is eager to engage and help them.</p>
+                                                        <p><b>10. Pin a tweet.</b>
+                                                        Pin an engaging tweet to the top of your profile. You could pin a product demo video, a link to a published article or a featured story, or just pin a happy team picture. Change it up regularly to keep your audience engaged.</p>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="styleSelector">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="fixed-button">
+	<a href="/" target="_blank" class="btn btn-md btn-primary">
+	  <i class="fa fa-shopping-cart" aria-hidden="true"></i> Analyze A Different Brand
+	</a>
+</div>
+
+    <!-- Warning Section Starts -->
+    <!-- Older IE warning message -->
+<!--[if lt IE 9]>
+<div class="ie-warning">
+    <h1>Warning!!</h1>
+    <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers
+        to access this website.</p>
+    <div class="iew-container">
+        <ul class="iew-download">
+            <li>
+                <a href="http://www.google.com/chrome/">
+                    <img src="assets/images/browser/chrome.png" alt="Chrome">
+                    <div>Chrome</div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.mozilla.org/en-US/firefox/new/">
+                    <img src="assets/images/browser/firefox.png" alt="Firefox">
+                    <div>Firefox</div>
+                </a>
+            </li>
+            <li>
+                <a href="http://www.opera.com">
+                    <img src="assets/images/browser/opera.png" alt="Opera">
+                    <div>Opera</div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.apple.com/safari/">
+                    <img src="assets/images/browser/safari.png" alt="Safari">
+                    <div>Safari</div>
+                </a>
+            </li>
+            <li>
+                <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                    <img src="assets/images/browser/ie.png" alt="">
+                    <div>IE (9 & above)</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <p>Sorry for the inconvenience!</p>
+</div>
+<![endif]-->
+<!-- Warning Section Ends -->
+<!-- Required Jquery -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-ui/jquery-ui.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/popper.js/popper.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='/js/bootstrap/js/bootstrap.min.js')}}"></script>
+<!-- jquery slimscroll js -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
+<!-- modernizr js -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/modernizr/modernizr.js')}}"></script>
+<!-- am chart -->
+<script src="{{ url_for('static', filename='pages/widget/amchart/amcharts.min.js')}}"></script>
+<script src="{{ url_for('static', filename='pages/widget/amchart/serial.min.js')}}"></script>
+<!-- Todo js -->
+<script type="text/javascript " src="{{ url_for('static', filename='pages/todo/todo.js')}}"></script>
+<!-- Custom js -->
+<script type="text/javascript" src="{{ url_for('static', filename='pages/dashboard/custom-dashboard.js')}}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/script.js')}}"></script>
+<script type="text/javascript " src="{{ url_for('static', filename='js/SmoothScroll.js')}}"></script>
+<script src="{{ url_for('static', filename='js/pcoded.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/demo-12.js')}}"></script>
+<script src="{{ url_for('static', filename='js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+<script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"></script>
+
+<script>
+    function wordCloud(selector) {
+
+        var fill = d3.scale.category20();
+
+        //Construct the word cloud's SVG element
+        var svg = d3.select(selector).append("svg")
+            .attr("width", 500)
+            .attr("height", 500)
+            .append("g")
+            .attr("transform", "translate(250,250)");
+
+
+        //Draw the word cloud
+        function draw(words) {
+            var cloud = svg.selectAll("g text")
+                            .data(words, function(d) { return d.text; })
+
+            //Entering words
+            cloud.enter()
+                .append("text")
+                .style("font-family", "Impact")
+                .style("fill", function(d, i) { return fill(i); })
+                .attr("text-anchor", "middle")
+                .attr('font-size', 1)
+                .text(function(d) { return d.text; });
+
+            //Entering and existing words
+            cloud
+                .transition()
+                    .duration(600)
+                    .style("font-size", function(d) { return d.size + "px"; })
+                    .attr("transform", function(d) {
+                        return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+                    })
+                    .style("fill-opacity", 1);
+
+            //Exiting words
+            cloud.exit()
+                .transition()
+                    .duration(200)
+                    .style('fill-opacity', 1e-6)
+                    .attr('font-size', 1)
+                    .remove();
+        }
+
+
+            //Use the module pattern to encapsulate the visualisation code. We'll
+            // expose only the parts that need to be public.
+            return {
+
+                //Recompute the word cloud for a new set of words. This method will
+                // asycnhronously call draw when the layout has been computed.
+                //The outside world will need to call this function, so make it part
+                // of the wordCloud return value.
+                update: function(words) {
+                    d3.layout.cloud().size([500, 500])
+                        .words(words)
+                        .padding(5)
+                        .rotate(function() { return ~~(Math.random() * 2) * 90; })
+                        .font("Impact")
+                        .fontSize(function(d) { return d.size; })
+                        .on("end", draw)
+                        .start();
+                }
+            }
+
+        }
+
+    //Some sample data - http://en.wikiquote.org/wiki/Opening_lines
+    var twitter_topics = {{ context.twitter_imp_topics | safe}};
+    var appstore_topics = {{ context.appstore_imp_topics | safe}};
+    var playstore_topics = {{ context.playstore_imp_topics | safe}};
+    
+    //Prepare one of the sample sentences by removing punctuation,
+    // creating an array of words and computing a random size attribute.
+    function getWords(i, words) {
+        return words[i]
+                .replace(/[!\.,:;\?]/g, '')
+                .split(' ')
+                .map(function(d) {
+                    return {text: d, size: 10 + Math.random() * 60};
+                })
+    }
+
+//This method tells the word cloud to redraw with a new set of words.
+//In reality the new words would probably come from a server request,
+// user input or some other source.
+    function showNewWords(vis, words, i) {
+        i = i || 0;
+
+        vis.update(getWords(i ++ % words.length, words))
+        setTimeout(function() { showNewWords(vis, words, i+1)}, 2000)
+    }
+
+    //Create a new instance of the word cloud visualisation.
+    var twitterWordCloud = wordCloud('#twitter3');
+    var appStoreWordCloud = wordCloud('#appstore3');
+    var playStoreWordCloud = wordCloud('#playstore3');
+
+    //Start cycling through the demo data
+    showNewWords(twitterWordCloud, words = twitter_topics);
+    showNewWords(appStoreWordCloud, appstore_topics);
+    showNewWords(playStoreWordCloud, playstore_topics)
+
+</script>
+<script>
+    var twitter_keyword_counts = JSON.parse(JSON.stringify({{context.twitter_word_freq | safe }}));
+    var appstore_keyword_counts = JSON.parse(JSON.stringify({{context.appstore_word_freq | safe }}));
+    var playstore_keyword_counts = JSON.parse(JSON.stringify({{context.playstore_word_freq | safe }}));
+    var twitter_graph_data = [];
+    var playstore_graph_data = [];
+    var appstore_graph_data = [];
+    for (var key in twitter_keyword_counts) {
+        if(key in twitter_keyword_counts){
+            twitter_keyword = twitter_keyword_counts[key][0];
+            twitter_value = twitter_keyword_counts[key][1];
+            twitter_graph_data.push({label: twitter_keyword, value: twitter_value});
+        }
+        if(key in appstore_keyword_counts){
+            appstore_keyword = appstore_keyword_counts[key][0];
+            appstore_value = appstore_keyword_counts[key][1];
+            appstore_graph_data.push({label: appstore_keyword, value: appstore_value});
+
+        }
+        if(key in playstore_keyword_counts){
+            playstore_keyword = playstore_keyword_counts[key][0];
+            playstore_value = playstore_keyword_counts[key][1];
+            playstore_graph_data.push({label: playstore_keyword, value: playstore_value});
+
+        }
+       
+
+        
+       
+    } 
+    $(document).ready(function() {
+        donutChart(twitter_graph_data,"twitter");
+        donutChart(appstore_graph_data,"appstore");
+        donutChart(playstore_graph_data,"playstore");
+        $(window).resize(function() {
+            window.donutChart.redraw();
+        });
+    });
+    function donutChart(data, selector) {
+        window.areaChart = new Morris.Donut({
+            element: selector,
+            redraw: true,
+            data: data,
+            resize: true,
+            redraw: true,
+            colors: [
+                '#E0F7FA',
+                '#B2EBF2',
+                '#80DEEA',
+                '#4DD0E1',
+                '#26C6DA',
+                '#00BCD4',
+                '#00ACC1',
+                '#0097A7',
+                '#00838F',
+                '#006064'
+            ],
+        });
+    }
+</script>
+</body>
+
+</html>
