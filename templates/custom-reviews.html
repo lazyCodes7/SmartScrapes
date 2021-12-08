@@ -138,7 +138,7 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                                <li class="active">
+                                <li>
                                     <a href="{{url_for('playstoreAnalysis', username=context.user)}}" onclick="loading()">
                                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.form-components.main">Playstore Analytics</span>
@@ -180,7 +180,7 @@
                     
                             </ul>
                             <ul class="pcoded-item pcoded-left-item">
-                                <li>
+                                <li class = "active">
                                     <a href="{{ url_for('customDataAnalysis',username=context.user) }}" onclick="loading()">
                                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.form-components.main">Upload Data</span>
@@ -295,80 +295,52 @@
                                                     </div>
                                                 </div>
                                                 <!-- Bootstrap tab card end -->
-                                            </div>
-                                        <div class="row">
-                                            <!-- SITE VISIT CHART start -->
-                                            <div class="col-md-12 col-lg-6">
-                                                <div class="card">
-                                                    <div class="card-header">
-                                                        <h5>Emotions</h5>
-                                                        <span>Graphical view of the emotional traits found in your reviews</span>
-                                                        <div class="card-header-right">                                                             <i class="icofont icofont-spinner-alt-5"></i>                                                         </div>
+                                                <div class="row">
+                                                    <!-- SITE VISIT CHART start -->
+                                                    <div class="col-md-12 col-lg-6">
+                                                        <div class="card">
+                                                            <div class="card-header">
+                                                                <h5>Emotions</h5>
+                                                                <span>Graphical view of the emotional traits found in your reviews</span>
+                                                                <div class="card-header-right">                                                             <i class="icofont icofont-spinner-alt-5"></i>                                                         </div>
+                                                            </div>
+                                                            <div class="card-block">
+                                                                <div id="emotions"></div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="card-block">
-                                                        <div id="emotions"></div>
+                                                    <!-- SITE VISIT CHART Ends -->
+                                                    <!-- Bar Chart start -->
+                                                    <div class="col-md-12 col-lg-6">
+                                                        <div class="card">
+                                                            <div class="card-header" >
+                                                                <h5>Behavorial</h5>
+                                                                <span>Find out the Behavorial traits found in your reviews</span>
+                                                                <div class="card-header-right">                                                             <i class="icofont icofont-spinner-alt-5"></i>                                                         </div>
+                                                            </div>
+                                                            <div class="card-block">
+                                                                <div id="behavioral-traits"></div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <!-- SITE VISIT CHART Ends -->
-                                            <!-- Bar Chart start -->
-                                            <div class="col-md-12 col-lg-6">
-                                                <div class="card">
-                                                    <div class="card-header" >
-                                                        <h5>Behavorial</h5>
-                                                        <span>Find out the Behavorial traits found in your reviews</span>
-                                                        <div class="card-header-right">                                                             <i class="icofont icofont-spinner-alt-5"></i>                                                         </div>
-                                                    </div>
-                                                    <div class="card-block" >
-                                                        <div id="behavioral-traits"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Bar Chart Ends -->
-                                            <!-- EXTRA AREA CHART start -->
-                                            <div class="col-lg-12">
-                                                <div class="card">
-                                                    <div class="card-header">
-                                                        <h5>Top Keywords</h5>
-                                                        <span>Here are the top keywords you have used in your tweets.</span>
-                                                        <div class="card-header-right">                                                             <i class="icofont icofont-spinner-alt-5"></i>                                                         </div>
-                                                    </div>
-                                                    <div class="card-block" style="width:100%">
-                                                        <div id="top-keywords" style="width:100%"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <!-- LINE CHART start -->
-                                            <div class="col-md-12">
-                                                <div class="card">
-                                                    <div class="card-header">
-                                                        <h5>IPTC Traits</h5>
-                                                        <span>Relevant topics of interest found in your reviews</span>
-                                                    </div>
-                                                    <div class="card-block">
-                                                        <div id="iptc"></div>
+                                                    <div class="col-lg-12">
+                                                        <div class="card">
+                                                            <div class="card-header">
+                                                                <h5>Top Keywords</h5>
+                                                                <span>Here are the top keywords you have used in your tweets.</span>
+                                                                <div class="card-header-right">                                                             <i class="icofont icofont-spinner-alt-5"></i>                                                         </div>
+                                                            </div>
+                                                            <div class="card-block" style="width:100%">
+                                                                <div id="top-keywords" style="width:100%"></div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- LINE CHART Ends -->
-                                            <!-- Donut chart start -->
-                                            <div class="col-md-12">
-                                                <div class="card">
-                                                    <div class="card-header">
-                                                        <h5>Ratings Distrubution</h5>
-                                                        <span>Distrubution of your recent ratings</span>
-                                                        <div class="card-header-right">                                                             <i class="icofont icofont-spinner-alt-5"></i>                                                         </div>
-                                                    </div>
-                                                    <div class="card-block">
-                                                        <div id="ratings-barplot"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Donut chart Ends -->
-                                        </div>
+
                                     </div>
                                 </div>
+                            </div>
                             </div>
                             <div id="styleSelector">
 

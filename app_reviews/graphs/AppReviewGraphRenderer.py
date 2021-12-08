@@ -84,8 +84,8 @@ class AppReviewGraphRenderer:
 
         # JSON Conversion
         return (
-            json.dumps(fig1, cls=plotly.utils.PlotlyJSONEncoder),
             json.dumps(fig2, cls=plotly.utils.PlotlyJSONEncoder),
+            json.dumps(fig1, cls=plotly.utils.PlotlyJSONEncoder),
             json.dumps(fig3, cls=plotly.utils.PlotlyJSONEncoder)
         )
         
