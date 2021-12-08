@@ -9,12 +9,14 @@ import secrets
 import json
 import logging
 from io import BytesIO
+from dotenv import load_dotenv
+load_dotenv()
 # Initializing the flask app
 app = Flask(__name__,static_url_path='/static', static_folder="templates/assets")
 app.config["SESSION_PERMANENT"] = False
 
 # Adding a secret key randomly decided
-app.secret_key = str(secrets.token_urlsafe(16))
+app.secret_key = os.environ["APP_SECRET_KEY"]
 
 # Initializing a session
 sess = Session()
@@ -99,7 +101,7 @@ def error(code):
         message = "Please check the twitter username provided."
 
     elif(code == "APPSTORE_ERR" or code == "PLAYSTORE_ERR"):
-        message = "The app link provided might not be find or we weren't able to find your app"
+        message = "The app link provided might not be valid or we weren't able to find your app"
     
     elif(code == "REPORT_ERR"):
         message = "The reports section is not accessible if all the links are not provided. Please try with something else."
