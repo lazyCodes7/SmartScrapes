@@ -12,7 +12,7 @@ from io import BytesIO
 from dotenv import load_dotenv
 load_dotenv()
 # Initializing the flask app
-app = Flask(__name__,static_url_path='/static', static_folder="templates/assets")
+app = Flask(__name__,static_url_path='/static', static_folder="templates/assets/")
 app.config["SESSION_PERMANENT"] = False
 
 # Adding a secret key randomly decided
