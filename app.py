@@ -59,7 +59,7 @@ def textAnalyze(username):
 
     try:
         try:
-            if(session["appstore"]==""):
+            if("appstore" not in session or session["appstore"]==""):
                 app_reviews_df = store_review_utils.searchAppStore()
             else:
                 app_reviews_df = store_review_utils.searchAppStore(link = session["appstore"])
@@ -68,7 +68,7 @@ def textAnalyze(username):
             logging.warning("App Not found")
 
         try:
-            if(session["playstore"]==""):
+            if("playstore" not in session or session["playstore"]==""):
                 app_reviews_df = store_review_utils.searchPlaystore()
             else:
                 app_reviews_df = store_review_utils.searchPlaystore(link = session["playstore"])
@@ -157,7 +157,7 @@ def playstoreAnalysis(username):
     try:
         store_review_utils = StoreReviewUtils()
         store_review_utils.setUsername(username)
-        if(session["playstore"]==""):
+        if("playstore" not in session or session["playstore"]==""):
             app_reviews_df = store_review_utils.searchPlaystore()
         else:
             app_reviews_df = store_review_utils.searchPlaystore(link = session["playstore"])
@@ -182,7 +182,7 @@ def appStoreAnalysis(username):
     try:
         store_review_utils = StoreReviewUtils()
         store_review_utils.setUsername(username)
-        if(session["appstore"]==""):
+        if("appstore" not in session or session["appstore"]==""):
             app_reviews_df = store_review_utils.searchAppStore()
         else:
             app_reviews_df = store_review_utils.searchAppStore(link = session["appstore"])
