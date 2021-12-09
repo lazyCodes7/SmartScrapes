@@ -35,7 +35,8 @@ SmartScrapes is a web application built using Flask which provides an analytical
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-There are not tools online that provide a way to analyze your own product. A person could hire an analyst for the same but what if this could be done free-of-cost. This really is the inspiration behind building SmartScrapes
+While building products we often require feedback to improve but to take in 100 reviews at a single time is pretty tough to remember. Artificial Intelligence has transformed a lot of industries in the past and hence it makes sense to transform this arena as well. With SmartScrapes, these reviews are processed quickly using the power of Natural Language Processing which gives us a quick, efficient bird's eye view of the performance of the product involved.
+
 
 ### Built With
 
